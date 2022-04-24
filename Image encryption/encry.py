@@ -234,7 +234,7 @@ def xor_operation(b, g, r, mk):
 
 def gen_chaos_seq(m, n):
     global x0, y0, z0, a, b, c, N
-    N = m * n * 4  # doubt
+    N = m * n * 4
     x = np.array((m, n * 4))
     y = np.array((m, n * 4))
     z = np.array((m, n * 4))
@@ -280,7 +280,7 @@ def sequence_indexing(x, y, z):
 
 
 
-def scramble(fx, fy, fz, b, r, g):
+def scramble(fx, fy, fz, b, g, r):
     p, q = b.shape
     size = p*q
     bx = b.reshape(size).astype(str)
@@ -303,9 +303,7 @@ def scramble(fx, fy, fz, b, r, g):
     gx_s = gx_s.astype(str)
     rx_s = rx_s.astype(str)
 
-    b_s = np.chararray((p, q))
-    g_s = np.chararray((p, q))
-    r_s = np.chararray((p, q))
+
 
     b_s = bx_s.reshape(p, q)
     g_s = gx_s.reshape(p, q)
@@ -372,7 +370,7 @@ def decrypt(image, fx, fy, fz, fp, Mk, bt, gt, rt):
     r, g, b = split_into_rgb_channels(image)
     p, q = rt.shape
     benc, genc, renc = dna_encode(b, g, r)
-    bs, gs, rs = scramble_new(fx, fy, fz, benc, genc, renc)
+    bs, gs, rs = scramble(fx, fy, fz, benc, genc, renc)
     bx, rx, gx = xor_operation_new(bs, gs, rs, Mk)
     blue, green, red = dna_decode(bx, gx, rx)
     green, red = red, green
@@ -412,8 +410,8 @@ if (__name__ == "__main__"):
     Mk_e)  # perform xor operation of key encoded matrix with all encoded red, green, blue 2d matrix
     x, y, z = gen_chaos_seq(m, n)  # gen arrays of x, y, z with random numbers using lorenz 3d lorenz equation
     fx, fy, fz = sequence_indexing(x, y, z)  # map x,y,z random array to sorted x,y,z arrays and generate x,y,z mapped index value array
-    blue_scrambled, green_scrambled, red_scrambled = scramble(fx, fy, fz, blue_final, red_final,
-    green_final)  # shuffle the values of blue, green, red using mapped index value arrays
+    blue_scrambled, green_scrambled, red_scrambled = scramble_new(fx, fy, fz, blue_final, green_final,
+    red_final)  # shuffle the values of blue, green, red using mapped index value arrays
     b, g, r = dna_decode(blue_scrambled, green_scrambled,red_scrambled)  # decode red, green blue matrix back to byte values
     img = recover_image(b, g, r, file_path)
 

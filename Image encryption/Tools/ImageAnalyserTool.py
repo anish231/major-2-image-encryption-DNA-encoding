@@ -63,10 +63,10 @@ def allanalysis2():
 
 
 
-def rmse():
-    value = rootmeansquareerror(loc1.get(), loc2.get())
-    vrms = Label(root, text=value)
-    vrms.grid(row=10, column=1)
+# def rmse():
+#     value = rootmeansquareerror(loc1.get(), loc2.get())
+#     vrms = Label(root, text=value)
+#     vrms.grid(row=10, column=1)
 
 
 
@@ -116,28 +116,28 @@ def askopenfile2():
     myvar.image = tkimage  # assigning the image value
     myvar.grid(row=2, column=2, pady=5)  # Placing the image using grid layout
 
-
-def doegraphplot():
-
-    loc2 = output_loc+"/output.png"
-    coplot_horizontal(loc2)
-
-
-def doographplot():
-    loc = loc1.get()
-    coplot_horizontal(loc)
-
-
+#
+# def doegraphplot():
+#
+#     loc2 = output_loc+"/output.png"
+#     coplot_horizontal(loc2)
+#
+#
+# def doographplot():
+#     loc = loc1.get()
+#     coplot_horizontal(loc)
+#
+#
 def askdirectory():
     global output_loc
     output_loc = filedialog.askdirectory()
     outputl = Label(root, text=output_loc)
     outputl.grid(row=1, column=1)
-
-
-def bifurcation():
-    im = Image.open("bifurcation.png")
-    im.show()
+#
+#
+# def bifurcation():
+#     im = Image.open("bifurcation.png")
+#     im.show()
 
 browse1 = Button(root, text="Browse Image", command=askopenfile1,
                  width=15, height=2, bg="#657cc3")
@@ -186,8 +186,8 @@ analyze2.grid(row=12, column=2, pady=20)
 npcr = Button(root, text="NPCR Test", bg="#f2b91f", command=npcr)
 npcr.grid(row=9, column=2, pady=10)
 
-rms = Button(root, text="RMSE Test", bg="#f2b91f", command=rmse)
-rms.grid(row=10, column=2)
+# rms = Button(root, text="RMSE Test", bg="#f2b91f", command=rmse)
+# rms.grid(row=10, column=2)
 
 uac = Button(root, text="UACI Test", bg="#f2b91f", command=uac)
 uac.grid(row=11, column=2, pady=10)
