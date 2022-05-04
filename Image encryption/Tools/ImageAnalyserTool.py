@@ -10,7 +10,7 @@ from vertical import corr_of_rgb_vertical
 from diagonal import corr_of_rgb_dia
 from histogram import redhistogram, greenhistogram, bluehistogram
 from npcr import npcrv
-from uaci import rootmeansquareerror, uaci
+#from uaci import rootmeansquareerror, uaci
 root = Tk()
 root.geometry("1200x900")
 root.configure(background="#019ad2")
